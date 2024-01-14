@@ -72,7 +72,7 @@ class Migration(migrations.Migration):
             fields=[
                 ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
                 ('name', models.CharField(default='Not Available', max_length=45)),
-                ('gdp', models.ForeignKey(null=True, on_delete=django.db.models.deletion.CASCADE, to='Countries_App.gdp')),
+                ('gdp', models.ForeignKey(null=True, on_delete=django.db.models.deletion.CASCADE, to='Economics_App.gdp')),
             ],
         ),
     ]

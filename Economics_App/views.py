@@ -118,7 +118,6 @@ def display_population_evolution_graph(request):
         id = request.POST.get("id")
         try:
             country = Country.objects.get(id= int(id))
-            print(country)
             return render(request=request, template_name="display_population_evolution_graph.html", context={"country": country})
         except ObjectDoesNotExist:
             print(f"Object not found with id: {id}")
@@ -141,7 +140,6 @@ def display_2023_population_graph(request):
         id = request.POST.get("id")
         try:
             country = Country.objects.get(id= int(id))
-            print(country)
             return render(request=request, template_name="display_2023_population_graph.html", context={"country": country})
         except ObjectDoesNotExist:
             print(f"Object not found with id: {id}")

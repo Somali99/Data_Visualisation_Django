@@ -7,7 +7,7 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('Countries_App', '0001_initial'),
+        ('Economics_App', '0001_initial'),
     ]
 
     operations = [
@@ -144,6 +144,6 @@ class Migration(migrations.Migration):
         migrations.AddField(
             model_name='country',
             name='pop',
-            field=models.ForeignKey(null=True, on_delete=django.db.models.deletion.CASCADE, to='Countries_App.population'),
+            field=models.ForeignKey(null=True, on_delete=django.db.models.deletion.CASCADE, to='Economics_App.population'),
         ),
     ]

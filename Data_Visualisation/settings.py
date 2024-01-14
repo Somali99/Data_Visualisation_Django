@@ -34,7 +34,7 @@ ALLOWED_HOSTS = [config('ALLOWED_HOST1'), ]
 INSTALLED_APPS = [
     'django.contrib.admin',
     'django.contrib.auth',
-    'Countries_App',
+    'Economics_App',
     'Main_App',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
