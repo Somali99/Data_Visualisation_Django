@@ -115,3 +115,4 @@ def display_2023_population_graph(request):
         return HttpResponseRedirect(redirect_to=country_data)    
 
 
+print("a")
