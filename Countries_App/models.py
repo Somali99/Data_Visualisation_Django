@@ -150,14 +150,16 @@ class Country(models.Model):
     
     @classmethod
     def clear_data_and_import(cls)->int:
-        """Clears existing Country instances and imports from a file.
+        """Clears data instances and imports from a file.
         Returns:
             int: 0 for Success, other values are errors handled.
         """
+        
         #removing data to start again
         cls.objects.all().delete()
         Gdp.objects.all().delete()
         Population.objects.all().delete()
+        
         # Read gdp data from 1950 to 2028 (5 years of predictions) 
         try:
             with open(file= "/home/amnesia2/Documents/Django/Data_Visualisation/data/population/world_population_2023.csv", mode='r', encoding='utf-8-sig') as f1:#  this file url is made for production not distribution
@@ -204,6 +206,7 @@ class Country(models.Model):
                         try:
                             country = Country.objects.get(name = name)
                         except ObjectDoesNotExist:
+                            print(name)
                             return 3
                         country.pop = pop
                         country.save()

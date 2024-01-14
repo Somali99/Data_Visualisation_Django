@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    {% load static %}
+    <link rel="shortcut icon" href="{% static '/favicon.ico' %}" type="image/x-icon">
+    <link rel="stylesheet" type="text/css" href="{% static '/css/main.css' %}">
+    <title>Document</title>
+  </head>
+<body>
+  <nav class="navbar bg-dark border-bottom border-body" data-bs-theme="dark">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="{% url 'country_data' %}">
+        <img src="{% static '/favicon.ico' %}" id="logo" alt="logo" class="d-inline-block align">
+      </a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav">
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" href="{% url 'country_data' %}">Home</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'country_features' %}">Features</a>
+          </li>
+        </ul>
+        <form class="d-flex">
+          <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+          <button class="btn btn-outline-success" type="submit">Search</button>
+        </form>
+      </div>
+    </div>
+  </nav>
+    <div class="container">
+      <canvas id="gdpChart" width="400" height="400"></canvas>
+    </div>
+    
+
+    <script>
+        var ctx = document.getElementById('gdpChart').getContext('2d');
+
+        // Assuming country is an instance of the Country model
+        var data = {
+            labels: [
+            "Population 1950",
+            "Population 1951",
+            "Population 1952",
+            "Population 1953",
+            "Population 1954",
+            "Population 1955",
+            "Population 1956",
+            "Population 1957",
+            "Population 1958",
+            "Population 1959",
+            "Population 1960",
+            "Population 1961",
+            "Population 1962",
+            "Population 1963",
+            "Population 1964",
+            "Population 1965",
+            "Population 1966",
+            "Population 1967",
+            "Population 1968",
+            "Population 1969",
+            "Population 1970",
+            "Population 1971",
+            "Population 1972",
+            "Population 1973",
+            "Population 1974",
+            "Population 1975",
+            "Population 1976",
+            "Population 1977",
+            "Population 1978",
+            "Population 1979",
+            "Population 1980",
+            "Population 1981",
+            "Population 1982",
+            "Population 1983",
+            "Population 1984",
+            "Population 1985",
+            "Population 1986",
+            "Population 1987",
+            "Population 1988",
+            "Population 1989",
+            "Population 1990",
+            "Population 1991",
+            "Population 1992",
+            "Population 1993",
+            "Population 1994",
+            "Population 1995",
+            "Population 1996",
+            "Population 1997",
+            "Population 1998",
+            "Population 1999",
+            "Population 2000",
+            "Population 2001",
+            "Population 2002",
+            "Population 2003",
+            "Population 2004",
+            "Population 2005",
+            "Population 2006",
+            "Population 2007",
+            "Population 2008",
+            "Population 2009",
+            "Population 2010",
+            "Population 2011",
+            "Population 2012",
+            "Population 2013",
+            "Population 2014",
+            "Population 2015",
+            "Population 2016",
+            "Population 2017",
+            "Population 2018",
+            "Population 2019",
+            "Population 2020",
+            "Population 2021",
+            "Population 2022",
+            "Population 2023",
+            ],
+            datasets: [{
+                label: "{{country.name}}'s population evolution",
+                data: [
+                {{country.pop.pop1950}},
+                {{country.pop.pop1951}},
+                {{country.pop.pop1952}},
+                {{country.pop.pop1953}},
+                {{country.pop.pop1954}},
+                {{country.pop.pop1955}},
+                {{country.pop.pop1956}},
+                {{country.pop.pop1957}},
+                {{country.pop.pop1958}},
+                {{country.pop.pop1959}},
+                {{country.pop.pop1960}},
+                {{country.pop.pop1961}},
+                {{country.pop.pop1962}},
+                {{country.pop.pop1963}},
+                {{country.pop.pop1964}},
+                {{country.pop.pop1965}},
+                {{country.pop.pop1966}},
+                {{country.pop.pop1967}},
+                {{country.pop.pop1968}},
+                {{country.pop.pop1969}},
+                {{country.pop.pop1970}},
+                {{country.pop.pop1971}},
+                {{country.pop.pop1972}},
+                {{country.pop.pop1973}},
+                {{country.pop.pop1974}},
+                {{country.pop.pop1975}},
+                {{country.pop.pop1976}},
+                {{country.pop.pop1977}},
+                {{country.pop.pop1978}},
+                {{country.pop.pop1979}},
+                {{country.pop.pop1980}},
+                {{country.pop.pop1981}},
+                {{country.pop.pop1982}},
+                {{country.pop.pop1983}},
+                {{country.pop.pop1984}},
+                {{country.pop.pop1985}},
+                {{country.pop.pop1986}},
+                {{country.pop.pop1987}},
+                {{country.pop.pop1988}},
+                {{country.pop.pop1989}},
+                {{country.pop.pop1990}},
+                {{country.pop.pop1991}},
+                {{country.pop.pop1992}},
+                {{country.pop.pop1993}},
+                {{country.pop.pop1994}},
+                {{country.pop.pop1995}},
+                {{country.pop.pop1996}},
+                {{country.pop.pop1997}},
+                {{country.pop.pop1998}},
+                {{country.pop.pop1999}},
+                {{country.pop.pop2000}},
+                {{country.pop.pop2001}},
+                {{country.pop.pop2002}},
+                {{country.pop.pop2003}},
+                {{country.pop.pop2004}},
+                {{country.pop.pop2005}},
+                {{country.pop.pop2006}},
+                {{country.pop.pop2007}},
+                {{country.pop.pop2008}},
+                {{country.pop.pop2009}},
+                {{country.pop.pop2010}},
+                {{country.pop.pop2011}},
+                {{country.pop.pop2012}},
+                {{country.pop.pop2013}},
+                {{country.pop.pop2014}},
+                {{country.pop.pop2015}},
+                {{country.pop.pop2016}},
+                {{country.pop.pop2017}},
+                {{country.pop.pop2018}},
+                {{country.pop.pop2019}},
+                {{country.pop.pop2020}},
+                {{country.pop.pop2021}},
+                {{country.pop.pop2022}},
+                {{country.pop.pop2023}},
+                ],
+                backgroundColor: 'rgba(255, 99, 132, 0.2)',
+                borderColor: 'rgba(255, 99, 132, 1)',
+                borderWidth: 1
+            }]
+        };
+
+        var options = {
+            scales: {
+                y: {
+                    beginAtZero: true
+                }
+            }
+        };
+
+        var myChart = new Chart(ctx, {
+            type: 'line',
+            data: data,
+            options: options
+        });
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+</body>
+</html>
