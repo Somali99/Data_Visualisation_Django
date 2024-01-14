@@ -1,2 +1,5 @@
 # .gitignore
 *.env
+*.log
+venv/
+*__pycache__
