@@ -28,15 +28,16 @@
             <a class="nav-link" href="{% url 'country_features' %}">Features</a>
           </li>
         </ul>
-        <form class="d-flex">
-          <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+        <form class="d-flex" action="{% url 'search_country' %}" method="post">
+          {% csrf_token %}
+          <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" name="name"> 
           <button class="btn btn-outline-success" type="submit">Search</button>
         </form>
       </div>
     </div>
   </nav>
     <div class="container">
-      <canvas id="gdpChart" width="400" height="400"></canvas>
+      <canvas id="gdpChart" width="400" height="200"></canvas>
     </div>
     
 
@@ -199,8 +200,8 @@
                 {{country.pop.pop2022}},
                 {{country.pop.pop2023}},
                 ],
-                backgroundColor: 'rgba(255, 99, 132, 0.2)',
-                borderColor: 'rgba(255, 99, 132, 1)',
+                backgroundColor: 'rgba(16, 15, 83, 0.644)',
+                borderColor: 'rgba(64, 155, 125, 0.863)',
                 borderWidth: 1
             }]
         };

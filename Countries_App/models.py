@@ -216,3 +216,41 @@ class Country(models.Model):
         except FileNotFoundError:
             return 1
         return 0 # success
+
+
+class Region(models.Model):
+    name = models.CharField(max_length = 45, null = False, default = "Not Available")
+    gdp = models.ForeignKey(Gdp, on_delete=models.CASCADE, null = True)
+
+    def __str__(self):
+        return self.name
+    
+    @classmethod
+    def clear_data_and_import(cls)->int:
+        """Clears data instances and imports from a file.
+        Returns:
+            int: 0 for Success, other values are errors handled.
+        """
+        
+        #removing data to start again
+        cls.objects.all().delete()
+        
+        # Read gdp data from 1950 to 2028 (5 years of predictions) 
+        try:
+            with open(file= "/home/amnesia2/Documents/Django/Data_Visualisation/data/population/regional_gdp.csv", mode='r', encoding='utf-8-sig') as f:#  this file url is made for production not distribution
+                for line in f:
+                    region = Region()
+                    gdp = Gdp()
+                    try:
+                        # Parse the line and create a new gdp instance
+                        region.name, gdp.gdp1980, gdp.gdp1981, gdp.gdp1982, gdp.gdp1983, gdp.gdp1984, gdp.gdp1985, gdp.gdp1986, gdp.gdp1987, gdp.gdp1988, gdp.gdp1989, gdp.gdp1990, gdp.gdp1991, gdp.gdp1992, gdp.gdp1993, gdp.gdp1994, gdp.gdp1995, gdp.gdp1996, gdp.gdp1997, gdp.gdp1998, gdp.gdp1999, gdp.gdp2000, gdp.gdp2001, gdp.gdp2002, gdp.gdp2003, gdp.gdp2004, gdp.gdp2005, gdp.gdp2006, gdp.gdp2007, gdp.gdp2008, gdp.gdp2009, gdp.gdp2010, gdp.gdp2011, gdp.gdp2012, gdp.gdp2013, gdp.gdp2014, gdp.gdp2015, gdp.gdp2016, gdp.gdp2017, gdp.gdp2018, gdp.gdp2019, gdp.gdp2020, gdp.gdp2021, gdp.gdp2022, gdp.gdp2023, gdp.gdp2024, gdp.gdp2025, gdp.gdp2026, gdp.gdp2027, gdp.gdp2028 = line.strip().split(',')
+                        gdp.save()
+                        region.gdp = gdp
+                        region.save()
+                    except ValueError:
+                        return -2
+                f.close()
+        except FileNotFoundError:
+            return -1
+        return 0
+    

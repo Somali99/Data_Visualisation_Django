@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    {% load static %}
+    <link rel="shortcut icon" href="{% static '/favicon.ico' %}" type="image/x-icon">
+    <link rel="stylesheet" type="text/css" href="{% static '/css/main.css' %}">
+    <title>Document</title>
+  </head>
+<body>
+  <nav class="navbar bg-dark border-bottom border-body" data-bs-theme="dark">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="{% url 'country_data' %}">
+        <img src="{% static '/favicon.ico' %}" id="logo" alt="logo" class="d-inline-block align">
+      </a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav">
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" href="{% url 'country_data' %}">Home</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'country_features' %}">Features</a>
+          </li>
+        </ul>
+        <form class="d-flex" action="{% url 'search_country' %}" method="post">
+          {% csrf_token %}
+          <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" name="name"> 
+          <button class="btn btn-outline-success" type="submit">Search</button>
+        </form>
+      </div>
+    </div>
+  </nav>
+  <div class="container">
+    <canvas id="gdpChart" width="400" height="200"></canvas>
+  </div>
+
+    <script>
+        var ctx = document.getElementById('gdpChart').getContext('2d');
+
+        // Assuming country is an instance of the Country model
+        var data = {
+            labels: [
+              "1980",
+              "1981",
+              "1982",
+              "1983",
+              "1984",
+              "1985",
+              "1986",
+              "1987",
+              "1988",
+              "1989",
+              "1990",
+              "1991",
+              "1992",
+              "1993",
+              "1994",
+              "1995",
+              "1996",
+              "1997",
+              "1998",
+              "1999",
+              "2000",
+              "2001",
+              "2002",
+              "2003",
+              "2004",
+              "2005",
+              "2006",
+              "2007",
+              "2008",
+              "2009",
+              "2010",
+              "2011",
+              "2012",
+              "2013",
+              "2014",
+              "2015",
+              "2016",
+              "2017",
+              "2018",
+              "2019",
+              "2020",
+              "2021",
+              "2022",
+              "2023",
+              "2024",
+              "2025",
+              "2026",
+              "2027",
+              "2028",
+            ],
+            datasets: [{
+                label: "{{region.name}}'s gdp per capita in $",
+                data: [
+                {{region.gdp.gdp1980}},
+                {{region.gdp.gdp1981}},
+                {{region.gdp.gdp1982}},
+                {{region.gdp.gdp1983}},
+                {{region.gdp.gdp1984}},
+                {{region.gdp.gdp1985}},
+                {{region.gdp.gdp1986}},
+                {{region.gdp.gdp1987}},
+                {{region.gdp.gdp1988}},
+                {{region.gdp.gdp1989}},
+                {{region.gdp.gdp1990}},
+                {{region.gdp.gdp1991}},
+                {{region.gdp.gdp1992}},
+                {{region.gdp.gdp1993}},
+                {{region.gdp.gdp1994}},
+                {{region.gdp.gdp1995}},
+                {{region.gdp.gdp1996}},
+                {{region.gdp.gdp1997}},
+                {{region.gdp.gdp1998}},
+                {{region.gdp.gdp1999}},
+                {{region.gdp.gdp2000}},
+                {{region.gdp.gdp2001}},
+                {{region.gdp.gdp2002}},
+                {{region.gdp.gdp2003}},
+                {{region.gdp.gdp2004}},
+                {{region.gdp.gdp2005}},
+                {{region.gdp.gdp2006}},
+                {{region.gdp.gdp2007}},
+                {{region.gdp.gdp2008}},
+                {{region.gdp.gdp2009}},
+                {{region.gdp.gdp2010}},
+                {{region.gdp.gdp2011}},
+                {{region.gdp.gdp2012}},
+                {{region.gdp.gdp2013}},
+                {{region.gdp.gdp2014}},
+                {{region.gdp.gdp2015}},
+                {{region.gdp.gdp2016}},
+                {{region.gdp.gdp2017}},
+                {{region.gdp.gdp2018}},
+                {{region.gdp.gdp2019}},
+                {{region.gdp.gdp2020}},
+                {{region.gdp.gdp2021}},
+                {{region.gdp.gdp2022}},
+                {{region.gdp.gdp2023}},
+                {{region.gdp.gdp2024}},
+                {{region.gdp.gdp2025}},
+                {{region.gdp.gdp2026}},
+                {{region.gdp.gdp2027}},
+                {{region.gdp.gdp2028}},
+                ],
+                backgroundColor: 'rgba(255, 99, 132, 0.2)',
+                borderColor: 'rgba(255, 99, 132, 1)',
+                borderWidth: 1
+            }]
+        };
+
+        var options = {
+            scales: {
+                y: {
+                    beginAtZero: true
+                }
+            }
+        };
+
+        var myChart = new Chart(ctx, {
+            type: 'line',
+            data: data,
+            options: options
+        });
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+</body>
+</html>

@@ -28,16 +28,100 @@
             <a class="nav-link" href="{% url 'country_features' %}">Features</a>
           </li>
         </ul>
-        <form class="d-flex">
-          <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+        <form class="d-flex" action="{% url 'search_country' %}" method="post">
+          {% csrf_token %}
+          <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" name="name"> 
           <button class="btn btn-outline-success" type="submit">Search</button>
         </form>
       </div>
     </div>
   </nav>
-  
-      
-      
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+  <div class="container">
+    <div class="table-responsive">
+        <table class="table">
+            <thead>
+                <tr>
+                    <!-- ... table header ... -->
+                    <th scope="col">Name</th>
+                    <td scope="col">Net_change</td>
+                    <td scope="col">Density</td>
+                    <td scope="col">Land_area</td>
+                    <td scope="col">Net_migrants</td>
+                    <td scope="col">Fertility_rate</td>
+                    <td scope="col">Gdp 2000</td>
+                    <td scope="col">Gdp 2005</td>
+                    <td scope="col">Gdp 2010</td>
+                    <td scope="col">Gdp 2015</td>
+                    <td scope="col">Gdp 2020</td>
+                    <td scope="col">Gdp graph</td>
+                    <td scope="col">general infos</td>
+                    <td scope="col">Pop evol</td>
+                </tr>
+            </thead>
+            <tbody>
+                {% for country in countries %}
+                    <tr>
+                        <!-- ... table data ... -->
+                        <th scope="col">{{country.name}}</th>
+                        <td scope="col">{{country.net_change}}</td>
+                        <td scope="col">{{country.density}}</td>
+                        <td scope="col">{{country.land_area}}</td>
+                        <td scope="col">{{country.net_migrants}}</td>
+                        <td scope="col">{{country.fertility_rate}}</td>
+                        <td scope="col">{{country.gdp.gdp2000}}</td>
+                        <td scope="col">{{country.gdp.gdp2005}}</td>
+                        <td scope="col">{{country.gdp.gdp2010}}</td>
+                        <td scope="col">{{country.gdp.gdp2015}}</td>
+                        <td scope="col">{{country.gdp.gdp2020}}</td>
+                        <td scope="col">
+                            <form action="{% url 'display_gdp_graph' %}" method="post">
+                                {% csrf_token %}
+                                <!-- Hidden Input -->
+                                <input type="hidden" name="id" value="{{country.id}}" hidden>
+
+                                <!-- Submit Button -->
+                                <button type="submit" class="btn btn-dark">
+                                    <span class="material-symbols-outlined">
+                                        quick_reference
+                                    </span>
+                                </button>
+                            </form>
+                        </td>
+
+                        <td scope="col">
+                            <form action="{% url 'display_2023_population_graph' %}" method="post">
+                                {% csrf_token %}
+                                <!-- Hidden Input -->
+                                <input type="hidden" name="id" value="{{country.id}}" hidden>
+
+                                <!-- Submit Button -->
+                                <button type="submit" class="btn btn-dark">
+                                    <span class="material-symbols-outlined">
+                                        quick_reference
+                                    </span>
+                                </button>
+                            </form>
+                        </td>
+                        <td scope="col">
+                            <form action="{% url 'display_population_evolution_graph' %}" method="post">
+                                {% csrf_token %}
+                                <!-- Hidden Input -->
+                                <input type="hidden" name="id" value="{{country.id}}" hidden>
+
+                                <!-- Submit Button -->
+                                <button type="submit" class="btn btn-dark">
+                                    <span class="material-symbols-outlined">
+                                        quick_reference
+                                    </span>
+                                </button>
+                            </form>
+                        </td>
+                      </tr>
+                  {% endfor %}
+              </tbody>
+            </table>
+        </div>
+    </div>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
 </body>
 </html>
