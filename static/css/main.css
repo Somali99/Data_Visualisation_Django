@@ -1,0 +1,12 @@
+
+#logo{
+    max-width: 100px;
+    max-height: 100px;
+}
+
+.fixed-size-image {
+    width: 100%; /* Adjust the width as needed */
+    height: auto;
+    max-width: 300px; /* Set the maximum width for responsiveness */
+    max-height: 200px; /* Set the maximum height for responsiveness */
+} 
