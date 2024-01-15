@@ -33,4 +33,4 @@ def contact_us(request):
         )
 
         return HttpResponse('Email sent successfully')
-    return render(request= request, template_name="contact_us.html", context={})
+    return render(request= request, template_name="contact_us.html", context={}) 
