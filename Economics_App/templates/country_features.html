@@ -36,8 +36,36 @@
       </div>
     </div>
   </nav>
-  
-      
+  <div class="container" style="width: fit-content;">
+    <center>
+      <div class="row">
+        <h2>GDP data</h2>
+        <p>Consult gdp evolution over the years for countries/regions/agglomerations</p>
+        <form action="{% url 'gdp_only' %}" method="post">
+          {% csrf_token %}
+          <button type="submit" class="btn btn-primary">Consult page</button>
+        </form>
+      </div>
+      <hr>
+      <div class="row">
+        <h2>Population data</h2>
+        <p>Consult popuation evolution over the years</p>
+        <form action="{% url 'pop_only' %}" method="post">
+          {% csrf_token %}
+          <button type="submit" class="btn btn-primary">Consult page</button>
+        </form>
+      </div>
+      <hr>
+      <div class="row">
+        <h2>Demography data</h2>
+        <p>Consult general demographic data for over 194 countries</p>
+        <form action="{% url 'demography' %}" method="post">
+          {% csrf_token %}
+          <button type="submit" class="btn btn-primary">Consult page</button>
+        </form>
+      </div>
+  </center>
+  </div>
       
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
 </body>

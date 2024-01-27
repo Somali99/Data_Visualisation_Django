@@ -66,19 +66,17 @@
                 <tr>
                     <!-- ... table header ... -->
                     <th scope="col">Name</th>
+                    <td scope="col">Name</td>
                     <td scope="col">Net_change</td>
                     <td scope="col">Density</td>
                     <td scope="col">Land_area</td>
                     <td scope="col">Net_migrants</td>
                     <td scope="col">Fertility_rate</td>
-                    <td scope="col">Gdp 2000</td>
-                    <td scope="col">Gdp 2005</td>
-                    <td scope="col">Gdp 2010</td>
-                    <td scope="col">Gdp 2015</td>
-                    <td scope="col">Gdp 2020</td>
-                    <td scope="col">Gdp graph</td>
-                    <td scope="col">general infos</td>
-                    <td scope="col">Pop evol</td>
+                    <td scope="col">Population</td>
+                    <td scope="col">Population_urban</td>
+                    <td scope="col">Yearly_change</td>
+                    <td scope="col">Median_age</td>
+                    <td scope="col">View graph</td>
                 </tr>
             </thead>
             <tbody>
@@ -91,92 +89,16 @@
                         <td scope="col">{{country.land_area}}</td>
                         <td scope="col">{{country.net_migrants}}</td>
                         <td scope="col">{{country.fertility_rate}}</td>
-                        <td scope="col">{{country.gdp.gdp2000}}</td>
-                        <td scope="col">{{country.gdp.gdp2005}}</td>
-                        <td scope="col">{{country.gdp.gdp2010}}</td>
-                        <td scope="col">{{country.gdp.gdp2015}}</td>
-                        <td scope="col">{{country.gdp.gdp2020}}</td>
-                        <td scope="col">
-                            <form action="{% url 'display_gdp_graph' %}" method="post">
-                                {% csrf_token %}
-                                <!-- Hidden Input -->
-                                <input type="hidden" name="id" value="{{country.id}}" hidden>
-                                <input type="hidden" name="Test" value="Country">
-                                <!-- Submit Button -->
-                                <button type="submit" class="btn btn-dark">
-                                    <span class="material-symbols-outlined">
-                                        quick_reference
-                                    </span>
-                                </button>
-                            </form>
-                        </td>
-
-                        <td scope="col">
+                        <td scope="col">{{country.population}}</td>
+                        <td scope="col">{{country.population_urban}}</td>
+                        <td scope="col">{{country.yearly_change}}</td>
+                        <td scope="col">{{country.median_age}}</td>
+                        <td>
                             <form action="{% url 'display_2023_population_graph' %}" method="post">
                                 {% csrf_token %}
                                 <!-- Hidden Input -->
                                 <input type="hidden" name="id" value="{{country.id}}" hidden>
 
-                                <!-- Submit Button -->
-                                <button type="submit" class="btn btn-dark">
-                                    <span class="material-symbols-outlined">
-                                        quick_reference
-                                    </span>
-                                </button>
-                            </form>
-                        </td>
-                        <td scope="col">
-                            <form action="{% url 'display_population_evolution_graph' %}" method="post">
-                                {% csrf_token %}
-                                <!-- Hidden Input -->
-                                <input type="hidden" name="id" value="{{country.id}}" hidden>
-
-                                <!-- Submit Button -->
-                                <button type="submit" class="btn btn-dark">
-                                    <span class="material-symbols-outlined">
-                                        quick_reference
-                                    </span>
-                                </button>
-                            </form>
-                        </td>
-                    </tr>
-                {% endfor %}
-            </tbody>
-        </table>
-    </div>
-</div>
-<div class="container" style="width:fit-content;">
-    <center><h2>Regions</h2></center>
-    <div class="table-responsive">
-        <table class="table table-fixed">
-            <thead>
-                <tr>
-                    <!-- ... table header ... -->
-                    <th scope="col">Name</th>
-                    <td scope="col">Gdp 2000</td>
-                    <td scope="col">Gdp 2005</td>
-                    <td scope="col">Gdp 2010</td>
-                    <td scope="col">Gdp 2015</td>
-                    <td scope="col">Gdp 2020</td>
-                    <td scope="col">Gdp graph</td>
-                </tr>
-            </thead>
-            <tbody>
-                {% for region in regions %}
-                    <tr>
-                        <!-- ... table data ... -->
-                        <th scope="col">{{region.name}}</th>
-                        <td scope="col">{{region.gdp.gdp2000}}</td>
-                        <td scope="col">{{region.gdp.gdp2005}}</td>
-                        <td scope="col">{{region.gdp.gdp2010}}</td>
-                        <td scope="col">{{region.gdp.gdp2015}}</td>
-                        <td scope="col">{{region.gdp.gdp2020}}</td>
-                        <td scope="col">
-                            <form action="{% url 'display_gdp_graph' %}" method="post">
-                                {% csrf_token %}
-                                <!-- Hidden Input -->
-                                <input type="hidden" name="id" value="{{region.id}}" hidden>
-                                <input type="hidden" name="Test" value="Region">
                                 <!-- Submit Button -->
                                 <button type="submit" class="btn btn-dark">
                                     <span class="material-symbols-outlined">

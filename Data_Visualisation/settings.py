@@ -13,7 +13,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = config('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = config('DEBUG')
+DEBUG = config('DEBUG', default = False, cast = bool)
 
 ALLOWED_HOSTS = [config('ALLOWED_HOST1'), ]
 
@@ -36,6 +36,7 @@ INSTALLED_APPS = [
     'django.contrib.auth',
     'Economics_App',
     'Main_App',
+    'Authentication',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
@@ -104,6 +105,9 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
+LOGIN_REDIRECT_URL = 'index'  # Replace 'home' with the name of your home view
+LOGOUT_REDIRECT_URL = 'login'  # Replace 'login' with the name of your login view
+
 
 # Internationalization
 # https://docs.djangoproject.com/en/5.0/topics/i18n/
@@ -119,7 +123,6 @@ USE_TZ = True
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/5.0/howto/static-files/
-
 STATIC_URL = '/static/'
 STATICFILES_DIRS = [
     f"{BASE_DIR}/static",

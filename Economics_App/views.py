@@ -147,3 +147,27 @@ def display_2023_population_graph(request):
     else:
         return HttpResponseRedirect(redirect_to=country_data)    
 
+
+def gdp_only(request):
+    if request.method == 'POST':
+        countries = Country.objects.all()
+        regions = Region.objects.all()
+        return render(request=request, template_name="gdp_only.html", context={"countries": countries, "regions": regions})
+    else:
+        return HttpResponseRedirect(redirect_to=country_data)  
+ 
+
+def pop_only(request):
+    if request.method == 'POST':
+        countries = Country.objects.all()
+        return render(request=request, template_name="pop_only.html", context={"countries": countries})
+    else:
+        return HttpResponseRedirect(redirect_to=country_data)
+
+
+def demography(request):
+    if request.method == 'POST':
+        countries = Country.objects.all()
+        return render(request=request, template_name="demography.html", context={"countries": countries})
+    else:
+        return HttpResponseRedirect(redirect_to=country_data)
